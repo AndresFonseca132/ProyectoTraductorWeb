@@ -8,7 +8,9 @@ app = Flask(__name__)
 def hello_world():  # put application's code here
     return render_template('index.html')
 
-
+@app.route('/signin')
+def signin():
+    return render_template('login.html')
 
 
 
