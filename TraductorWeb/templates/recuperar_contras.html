@@ -1,25 +1,27 @@
+
 <!DOCTYPE html>
 <html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/stylelogin.css') }}">
-    <!-- Links Bootstrap - Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <script src="https://kit.fontawesome.com/61fe054ca1.js" crossorigin="anonymous"></script>
-    <link rel="shortcut icon" href="{{ url_for('static', filename='Img/favicon-32x32.png') }}" type="image/x-icon">
-    <!-- Link Google font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,300&display=swap" rel="stylesheet">
-    <title>Ingreso al portal | SENA</title>
-</head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/recuperar.css') }}">
+        <script src="{{ url_for('static', filename='js/recuperar.js') }}" defer></script>        <!-- Links Bootstrap - Icons -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        <script src="https://kit.fontawesome.com/61fe054ca1.js" crossorigin="anonymous"></script>
+        <link rel="shortcut icon" href="{{ url_for('static', filename='Img/favicon-32x32.png') }}" type="image/x-icon">
+
+        <!-- Link Google font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,300&display=swap" rel="stylesheet">
+        <title>Recuperar Contraseña | Sena</title>
+    </head>
+    
 
 <body>
-    <!-- Cabaza de paguina -->
     <header>
         <div class="Help">
             <a href="#">
@@ -32,55 +34,33 @@
         </div>
         <div class="acceso">
             <a href="/">Inicio</a>
-            <a href="/signup">Registrarse</a>
         </div>
     </header>
 
-    <!-- Formaulario -->
-    <div class="Container-form">
-        <div class="Container-row">
-            <div class="col1">
-                <img src="{{ url_for('static', filename='Img/hand-2925342_1280.png') }}" alt="">
+    <!-- Carta Restablecer -->
+    <div class="cartas-form">
+        <div class="card">
+            <div class="card-body">
+                <h4>¿Olvido su contraseña?</h4>
             </div>
-            <div class="col2">
-                <h2>Bienvenido</h2>
-                <div class="error">
-                    <b class="berror">{{error}}</b>
+            <div class="card-body">
+                <p>Ingrese el correo registrado para restablecer la contraseña.</p>
+
+                <input type="email" class="correo" placeholder="Correo misena O soy.sena" required>
+            </div>
+            <div class="card-body">
+                
+                <div class="botones">
+
+                    <button ><a href="#" type="submit" class="bt btn-primary">Cancelar</a></button>
+                    <button type="button" class="bt btn-primary" id="liveAlertBtn"><a href="#" class="bt btn-primary">Enviar Correo</a></button>
                 </div>
-                <section>
-                    <form action="/signin/" method="POST">
-                        <div class="input-box aling-items-center">
-                            <label for="email" class="form-label">Correo Electronico</label>
-                            <i class="fa-solid fa-envelope"></i>
-                            <input type="text" name="email" id="email" class="form-control"
-                                placeholder="correo@misena.edu.co" required>
-                        </div>
-                        <div class="input-box">
-                            <label for="password" class="form-label">Contraseña</label>
-                            <i class="fa-solid fa-lock"></i>
-                            <input type="password" name="password" class="form-control"
-                                placeholder="Ingrese una contraseña" id="password" required>
-                        </div>
-                        <div class="Recordar">
-                            <label for=""> <input type="checkbox">Recordar Usuario</label>
-                        </div>
-                        <button class="btn btn-primary mt-2">
-                            Iniciar sesion
-                        </button>
-                    </form>
-                    <div class="registro">
-                        <p>No tiene acceso? Solicitalo <a href="/signup">Aquí</a></p>
-                        <p>Olvido su contraseña<a href="/reset_password">Solicitela aqui</a></p>
-                    </div>
-
-                </section>
-
-
+                <div id="liveAlertPlaceholder"></div>
             </div>
         </div>
+        
     </div>
-    <!-- Pie De Paguina -->
-
+    <!-- Footer -->
     <footer class="pie-paguina">
         <h4>Servicio Nacional de Aprendizaje SENA</h4>
         <div class="grupo1">
@@ -88,6 +68,7 @@
                 <figure>
                     <a href="#">
                         <img src="{{ url_for('static', filename='Img/logoSena.png') }}" alt="logoSena" width="90px">
+
                     </a>
                 </figure>
             </div>
@@ -142,11 +123,5 @@
         </div>
 
     </footer>
-    <!-- Scrips Java -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-        crossorigin="anonymous"></script>
-
 </body>
-
 </html>
